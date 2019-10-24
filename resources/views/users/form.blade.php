@@ -16,7 +16,8 @@
             
                 <input type="checkbox" name="roles[]" value="{{ $role->id }}"
                         id="check_{{ $role->id }}"
-                        {{ isset($user->roles[0]->id) ? $user->roles[0]->id == $role->id ? "checked" : "" : '' }} 
+                        
+                        @isset($user->roles) {{($user->roles->contains($role->id)) ? 'checked' : ''}} @endisset
                          >
                 <label for="check_{{ $role->id }}">
                     {{ $role->name }}

@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Crear usuario
+                    Crear Rol
                     <a href="{{ route('roles.index') }}" class="btn btn-sm btn-secondary float-right">Regresar</a>
                 </div>
 

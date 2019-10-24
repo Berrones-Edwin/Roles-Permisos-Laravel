@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Editar Datos del Usuario <b>{{ $role->name }}</b>
+                    Editar Datos del Rol <b>{{ $role->name }}</b>
                     <a href="{{ route('roles.index') }}" class="btn btn-sm btn-secondary float-right">Regresar</a>
                 </div>
 

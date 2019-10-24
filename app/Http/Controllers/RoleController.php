@@ -15,8 +15,6 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
-        
         $roles = Role::orderBy('id','desc')->paginate();
         return view('roles.index',compact('roles'));
     }
@@ -28,7 +26,8 @@ class RoleController extends Controller
     public function create()
     {
         //
-        return view('roles.create');
+        $permissions = Permission::all();
+        return view('roles.create',compact('permissions'));
     }
 
     /**
@@ -40,7 +39,8 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         //
-        Role::create($request->all());
+        $role = Role::create($request->all());
+        $role->permissions()->sync($request->get('permissions'));
         return redirect()->route('roles.index')->with('status','Rol creado con éxito');
     }
   
@@ -52,7 +52,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        
         return view('roles.show',compact('role'));
     }
 
@@ -64,9 +64,8 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
-        $roles = Role::all();
-        return view('roles.edit',compact('role','roles'));
+        $permissions = Permission::all();
+        return view('roles.edit',compact('role','permissions'));
     }
 
     /**
@@ -80,7 +79,7 @@ class RoleController extends Controller
     {
         //Actualizar Rol
         $role->update($request->all());
-
+        $role->permissions()->sync($request->get('permissions'));
         return redirect()->route('roles.index')->with('status','Rol editado con éxito');
     }
 
